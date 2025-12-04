@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Online Exam</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 id="exam-title">Exam</h1>
+
+        <!-- Timer -->
+        <div id="timer">
+            <p>Time Left: <span id="time">10:00</span></p>
+        </div>
+
+        <form id="quiz-form"></form>
+
+        <!-- Submit Button -->
+        <button type="button" onclick="submitQuiz()">Submit</button>
+
+        <!-- Result Section -->
+        <div id="result" style="display: none;">
+            <h2>Your Result</h2>
+            <p id="score"></p>
+            
+            <!-- Logout and Re-attempt Buttons -->
+            <div class="buttons-container">
+                <button class="btn reatapt-btn" id="reatapt-btn">Re-attempt</button>
+                <button class="btn select-subject-btn" id="select-subject-btn">Select Subject</button>
+                <button class="btn logout-btn" id="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (Optional) -->
+    <!--
+    <footer class="footer">
+        <a href="https://www.virendragoura.com" target="_blank">
+            <button class="powered-by-button">POWERED BY VIRENDRA GOURA</button>
+        </a>
+    </footer>
+    -->
+
+    <!-- External Scripts -->
+    <script src="script.js?v=1.233"></script>
+
+    <!-- Embedded Script -->
+    <script>
+        // Disable back navigation
+        window.history.forward();
+
+        function logout() {
+            history.pushState(null, null, location.href);
+            history.replaceState(null, null, location.href);
+            window.onpopstate = function () {
+                history.go(1);
+            };
+            setTimeout(function () {
+                window.location.replace("index.html");
+            }, 100);
+        }
+
+        // Send result to backend
+        function sendResultToServer(score) {
+            const userData = {
+                username: localStorage.getItem('username') || 'demoUser',
+                password: localStorage.getItem('password') || 'demoPass',
+                course: localStorage.getItem('course') || 'BCA',
+                year: localStorage.getItem('year') || '3',
+                subject: localStorage.getItem('subject') || 'Networking',
+                result: `${score}/10`
+            };
+
+            console.log("Sending result to server:", userData);
+
+            fetch("https://virendragoura.com/save_user_data.php", { // <-- CHANGE this URL
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(userData)
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("Server response:", data);
+                alert(data.message); // Optional: feedback to user
+            })
+            .catch(err => {
+                console.error("Error saving result:", err);
+            });
+        }
+
+        // Example usage inside your script.js (not here):
+        // After calculating score:
+        // document.getElementById("score").textContent = `You scored ${score}/10`;
+        // document.getElementById("result").style.display = "block";
+        // sendResultToServer(score);
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Online Exam</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form onsubmit="loginUser(event)">
+            <label>Username:</label>
+            <input type="text" id="username" required><br>
+
+            <label>Password:</label>
+            <input type="password" id="password" required><br>
+
+            <button type="submit">Login</button>
+        </form>
+        <p id="error-message" style="color: red; display: none;">Invalid username or password</p>
+    </div>
+
+    <script>
+        // Predefined users with their credentials
+        const users = [
+            { username: 'virendra', password: '@1234' },
+            { username: 'ravi', password: '@1234' },
+            { username: 'ram', password: '@1234' }
+        ];
+
+        function loginUser(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const user = users.find(user => user.username === username && user.password === password);
+
+            if (user) {
+                // Store session (optional)
+                sessionStorage.setItem('user', username);
+
+                // Send data to backend
+                fetch('save_user_data.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password,
+                        course: '',   // You can update this later
+                        year: '',
+                        subject: '',
+                        result: ''
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.message); // For debugging
+                    // Redirect on successful login
+                    window.location.href = 'course_selection.html';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
+    </script>
+
+    <!-- Footer Section -->
+    <!--
+    <footer class="footer">
+        <a href="https://www.virendragoura.com" target="_blank">
+            <button class="powered-by-button">POWERED BY VIRENDRA GOURA</button>
+        </a>
+    </footer>
+    -->
+</body>
+</html>

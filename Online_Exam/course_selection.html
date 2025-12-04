@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Course - Online Exam</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Course & Year</h1>
+        <form onsubmit="saveCourse(event)">
+            <label>Course:</label>
+            <select id="course" required onchange="updateYears()">
+                <option value="">--Select--</option>
+                <option value="BCA">BCA</option>
+                <option value="MCA">MCA</option>
+            </select><br>
+
+            <label>Year:</label>
+            <select id="year" required></select><br>
+
+            <button type="submit">Next</button>
+        </form>
+    </div>
+
+    <script>
+        function updateYears() {
+            const course = document.getElementById('course').value;
+            const yearSelect = document.getElementById('year');
+            yearSelect.innerHTML = '';
+            const years = course === 'BCA' ? 3 : 2;
+
+            for (let i = 1; i <= years; i++) {
+                let yearLabel = i + 'th';
+                if (i === 1) yearLabel = '1st';
+                else if (i === 2) yearLabel = '2nd';
+                else if (i === 3) yearLabel = '3rd';
+
+                yearSelect.innerHTML += `<option value="${i}">${yearLabel} year</option>`;
+            }
+        }
+
+        function saveCourse(event) {
+            event.preventDefault();
+
+            const course = document.getElementById('course').value;
+            const year = document.getElementById('year').value;
+
+            // Save to session
+            sessionStorage.setItem('course', course);
+            sessionStorage.setItem('year', year);
+
+            // Get username & password from session (stored in login.html)
+            const username = sessionStorage.getItem('user');
+            const password = ''; // Optional: You can also store password if you want
+
+            // Send data to backend
+            fetch('save_user_data.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password,
+                    course: course,
+                    year: year,
+                    subject: '',
+                    result: ''
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message); // Debug info
+                window.location.href = 'subject_selection.html';
+            })
+            .catch(error => {
+                console.error('Error saving course data:', error);
+            });
+        }
+    </script>
+
+    <!-- Footer Section -->
+    <!--
+    <footer class="footer">
+        <a href="https://www.virendragoura.com" target="_blank">
+            <button class="powered-by-button">POWERED BY VIRENDRA GOURA</button>
+        </a>
+    </footer>
+    -->
+</body>
+</html>

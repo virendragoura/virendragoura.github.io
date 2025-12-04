@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Subject - Online Exam</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 id="exam-title">Select Subject</h1>
+        <form onsubmit="saveSubject(event)">
+            <label>Subject:</label>
+            <select id="subject" required>
+                <option value="">--Select--</option>
+            </select><br>
+
+            <button type="submit">Start Test</button>
+        </form>
+    </div>
+
+    <script>
+        const subjects = {
+            BCA: {
+                1: ["Office Management Tools", "Computer Architecture", "Operating Systems", "C Programming", "Web Application Development", "Mathematics"],
+                2: ["C++ Programming", "Database Management Systems", "Software Engineering", "Data Structures and Algorithms", "Cloud Computing", "Data Science"],
+                3: ["Java Programming", "Python Programming", "Data Communication & Computer Networks", "Artificial Intelligence", "Digital Marketing", "Machine Learning"]
+            },
+            MCA: {
+                1: ["Computer Organization and Architecture", "Data Structures and Algorithms", "Operating Systems", "Database Management Systems", "Programming with C/C++ or Java", "Discrete Mathematics"],
+                2: ["Software Engineering", "Computer Networks", "Machine Learning", "Cloud Computing", "Data Science", "Cybersecurity"]
+            }
+        };
+
+        const course = sessionStorage.getItem('course');
+        const year = sessionStorage.getItem('year');
+        const username = sessionStorage.getItem('user');
+
+        if (!course || !year) {
+            alert("Course and Year must be selected.");
+            window.location.href = "course_selection.html";
+        }
+
+        document.getElementById('exam-title').innerText = `${course} ${year} Test`;
+
+        function loadSubjects() {
+            const subjectSelect = document.getElementById('subject');
+            subjectSelect.innerHTML = '<option value="">--Select--</option>';
+
+            if (subjects[course] && subjects[course][year]) {
+                subjects[course][year].forEach(subject => {
+                    const option = document.createElement('option');
+                    option.value = subject;
+                    option.innerText = subject;
+                    subjectSelect.appendChild(option);
+                });
+            } else {
+                alert("No subjects found for the selected course and year.");
+            }
+        }
+
+        function saveSubject(event) {
+            event.preventDefault();
+            const subject = document.getElementById('subject').value;
+
+            if (!subject) {
+                alert("Please select a subject.");
+                return;
+            }
+
+            sessionStorage.setItem('subject', subject);
+
+            // Send everything to PHP
+            fetch('save_user_data.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: '', // not stored here, optional
+                    course: course,
+                    year: year,
+                    subject: subject,
+                    result: '' // will be filled after exam
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message); // For debugging
+                window.location.href = 'exam.html';
+            })
+            .catch(error => {
+                console.error('Error saving subject:', error);
+            });
+        }
+
+        loadSubjects();
+    </script>
+
+    <!-- Footer Section -->
+    <!--
+    <footer class="footer">
+        <a href="https://www.virendragoura.com" target="_blank">
+            <button class="powered-by-button">POWERED BY VIRENDRA GOURA</button>
+        </a>
+    </footer>
+    -->
+</body>
+</html>
