@@ -1,0 +1,63 @@
+@media (max-width:1200px) {
+    #header nav {
+        position: fixed;
+        /* background-color: #1e3a8a; */
+        background: linear-gradient(135deg, #382047, #8f66a5);
+        box-shadow: 0px 0px 8px rgb(226, 225, 225);
+        padding: 26px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        border-radius: 8px;
+        max-width: 280px;
+        margin-top: 50px;
+        opacity: 0;
+        pointer-events: none;
+        transition: all ease .3s;
+    }
+
+    #header nav ul {
+        flex-direction: column;
+        gap: 10px !important;
+    }
+
+    #header nav.show {
+        opacity: 1;
+        pointer-events: all;
+        margin-top: 0;
+        z-index: 99999999999;
+
+    }
+
+    .buttons {
+        display: flex !important;
+    }
+
+    ul li {
+        background-color: transparent;
+        padding: 0;
+    }
+
+    #skills ul li {
+    background: rgba(183, 142, 178, 0.2);
+        padding: 10px;
+    }
+
+    nav {
+        display: block;
+    }
+
+
+    #about {
+
+        gap: 40px;
+
+    }
+    header h1 {
+        
+        font-size: 20px;
+    
+    }
+    
+}
