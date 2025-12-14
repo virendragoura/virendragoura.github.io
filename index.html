@@ -19,7 +19,7 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous" />
     <!--main css | responsive css | common css-->
-    <link rel="stylesheet" href="/Css/style.css?v=3.7" />
+    <link rel="stylesheet" href="/Css/style.css?v=3.8" />
     <link rel="stylesheet" href="/Css/responsive.css?v=1.8" />
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#000000">
@@ -49,6 +49,12 @@
            </svg>
           </span>
             <ul class="d-flex gap-4 align-items-center">
+               <li>
+                <a
+                  class="navLinks text-capitalize fw-medium"
+                  href="#home"
+                  >Home</a>
+              </li>
               <li>
                 <a href="#about" class="navLinks text-capitalize fw-medium"
                   >About</a
@@ -106,9 +112,45 @@
       </div>
     </header>
     <div class="wrapper">
+  <section id="home" class="home-section">
+
+    <div class="home-container">
+
+      <!-- LEFT : TEXT CONTENT -->
+      <div class="home-content">
+        <h1>VIRENDRA GOURA</h1>
+
+        <h2>Where Logic Meets Creativity</h2>
+
+        <p>
+          Welcome to <strong>VG</strong> — my personal portfolio and learning platform
+          showcasing academic work, practical projects, e-books, and technical
+          resources in Computer Science and IT.
+        </p>
+
+        <div class="home-points">
+          <span>📚 Academic Notes & E-Books</span>
+          <span>💻 Practical Programming Projects</span>
+          <span>🎓 Student-Centered Learning</span>
+        </div>
+
+        <div class="home-buttons">
+          <a href="#ebooks" class="btn primary">Explore E-Books</a>
+          <a href="#projects" class="btn secondary">View Projects</a>
+        </div>
+      </div>
+
+      <!-- RIGHT : PROFILE PHOTO -->
+      <div class="home-photo">
+        <img src="Img/vgg.png" alt="Virendra Goura" />
+      </div>
+
+    </div>
+  </section>
+</div>
 
     <section id="about">
-      <img src="/Img/vgg.png" alt="Profile" class="profile-pic" />
+      <!-- <img src="/Img/vgg.png" alt="Profile" class="profile-pic" /> -->
       <div class="about-content">
         <h2>About</h2>
         <p>
@@ -373,6 +415,7 @@
       <script src="/Js/script.js"></script>
     </body>
 </html>
+
 
 
 
