@@ -40,6 +40,10 @@ html {
 
 
 
+
+
+
+
 /* General Styles */
 body {
     font-family: 'Poppins', sans-serif;
@@ -778,10 +782,12 @@ font-size: 14px;
   }
 
   .home-content h2 {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     white-space: nowrap;       /* single line */
     overflow: hidden;
     text-overflow: ellipsis;
+          letter-spacing: 2px;
+
      
 
 }
@@ -798,60 +804,3 @@ html, body {
   padding-right: 16px;
 }
 
-/* ========================= */
-/* 📱 VERY SMALL DEVICES (≤385px) */
-/* ========================= */
-@media (max-width: 385px) {
-
-  .home-container {
-    width: 100%;
-    padding: 0 14px;          /* SIDE PADDING FIX */
-    box-sizing: border-box;
-  }
-
-  .home-content {
-    width: 100%;
-    padding: 0 6px;
-    box-sizing: border-box;
-  }
-
-  .home-content h1 {
-    font-size: 1.35rem;
-    white-space: nowrap;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .home-content h2 {
-    font-size: 0.85rem;
-    white-space: nowrap;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .home-content p {
-    padding: 0 6px;
-  }
-}
-/* Default (Desktop / normal mobile) */
-.home-content h2 {
-  letter-spacing: 2px;   /* ya jo bhi aapka current hai */
-}
-
-/* ========================= */
-/* 📱 SMALL DEVICES (≤385px) */
-/* ========================= */
-@media (max-width: 385px) {
-
-  .home-content h2 {
-    letter-spacing: 0.5px;   /* 👈 yahan kam kar diya */
-    font-size: 0.85rem;
-    white-space: nowrap;
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-}
