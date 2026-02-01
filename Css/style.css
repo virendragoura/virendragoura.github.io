@@ -834,5 +834,17 @@ html, body {
   text-align: center;
 }
 
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overscroll-behavior: none;
+}
+
+.hero {
+    min-height: 100dvh;
+}
+
 
 
