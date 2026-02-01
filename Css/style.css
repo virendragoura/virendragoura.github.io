@@ -527,7 +527,7 @@ font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px 20px;
+  padding: 20px 20px;
   text-align: center;
   
   background: linear-gradient(
@@ -807,6 +807,13 @@ html, body {
 .home-section {
   padding-left: 16px;
   padding-right: 16px;
+}
+
+@media (max-width: 768px) {
+    .home-points span {
+        font-size: 0.6rem;
+        padding: 8px 12px;
+    }
 }
 
 
