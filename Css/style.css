@@ -812,6 +812,7 @@ html, body {
 @media (max-width: 510px) {
     .home-points span {
         font-size: 0.6rem;
+    padding: 10px 12px; 
 
     }
 }
@@ -820,6 +821,7 @@ html, body {
     font-size: 0.8rem;
 }
 }
+
 
 
 
