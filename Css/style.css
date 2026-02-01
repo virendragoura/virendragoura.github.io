@@ -41,9 +41,6 @@ html {
 
 
 
-
-
-
 /* General Styles */
 body {
     font-family: 'Poppins', sans-serif;
@@ -665,7 +662,7 @@ font-size: 14px;
 
 
 .home-photo img {
-  width: 350;
+  width: 350px;
   height: 380px;
   object-fit: cover;
   border-radius: 50%;
@@ -739,12 +736,12 @@ padding-top: 0px;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   align-items: center;
-  gap: -400px;
+  /* gap: -400px; */
 }
 
 /* =========================
-/* 📱 MOBILE VIEW ORDER FIX */
-/* ========================= */
+ 📱 MOBILE VIEW ORDER FIX 
+ ========================= */
 @media (max-width: 900px) {
 
   .home-container {
@@ -766,13 +763,12 @@ padding-top: 0px;
     display: flex;
     flex-direction: column;
     align-items: center;
-  } */
+  } 
 
 }
 /* Default (Desktop) – no change */
 .home-content h1,
 .home-content h2 {
-    
   white-space: nowrap;
 }
 
@@ -780,7 +776,7 @@ padding-top: 0px;
 @media (max-width: 900px) {
 
   .home-content h1 {
-    font-size: 1.6rem;          /* thoda chhota */
+    font-size: 1.6rem;          
     white-space: nowrap;       /* single line */
     overflow: hidden;
     text-overflow: ellipsis;  /* safety */
@@ -791,10 +787,8 @@ padding-top: 0px;
     white-space: nowrap;       /* single line */
     overflow: hidden;
     text-overflow: ellipsis;
-          letter-spacing: 2px;
-
-     
-
+    letter-spacing: 2px;
+  }
 }
 
 
@@ -816,6 +810,7 @@ html, body {
 
     }
 }
+    
 @media (max-width: 510px){
 .btn.primary {
     font-size: 0.8rem;
@@ -832,6 +827,7 @@ html, body {
   justify-content: center;
   padding: 20px 20px;
   text-align: center;
+  }
 }
 
 html, body {
@@ -845,6 +841,7 @@ html, body {
 .hero {
     min-height: 100dvh;
 }
+
 
 
 
