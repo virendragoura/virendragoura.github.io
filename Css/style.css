@@ -520,7 +520,7 @@ font-size: 14px;
 /* home */
 
 .home-section {
-  min-height: 70vh;
+  min-height: 67vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -820,7 +820,7 @@ html, body {
 
 @media (max-width: 900px){
 .home-section {
-  min-height: 70vh;
+  min-height: 67vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -840,6 +840,7 @@ html, body {
 .hero {
     min-height: 100dvh;
 }
+
 
 
 
