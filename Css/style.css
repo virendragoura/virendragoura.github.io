@@ -345,7 +345,7 @@ footer {
 }
 @media screen and (max-width: 768px) {
     header {
-        padding: 15px;
+        padding: 8px 12px;
     }
 
     nav ul {
@@ -820,7 +820,6 @@ html, body {
 
 @media (max-width: 900px){
 .home-section {
-  margin-block-start:45px;
   min-height: 70vh;
   display: flex;
   align-items: center;
@@ -841,6 +840,7 @@ html, body {
 .hero {
     min-height: 100dvh;
 }
+
 
 
 
