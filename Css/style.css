@@ -61,7 +61,7 @@ body {
 header {
     background: linear-gradient(135deg, #382047, #8f66a5);
     color: #fff;
-    padding: 15px 20px;
+    padding: 5px 20px;
     text-align: center;
     position: sticky;
     top: 0;
@@ -841,6 +841,7 @@ html, body {
 .hero {
     min-height: 100dvh;
 }
+
 
 
 
