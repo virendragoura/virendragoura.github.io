@@ -28,47 +28,80 @@
             { username: 'ram', password: '@1234' }
         ];
 
+
         function loginUser(event) {
-            event.preventDefault();
+    event.preventDefault();
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-            const user = users.find(user => user.username === username && user.password === password);
+    const user = users.find(user => 
+        user.username === username && user.password === password
+    );
 
-            if (user) {
-                // Store session (optional)
-                sessionStorage.setItem('user', username);
+    if (user) {
+        sessionStorage.setItem('user', username);
 
-                // Send data to backend
-                fetch('save_user_data.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: username,
-                        password: password,
-                        course: '',   // You can update this later
-                        year: '',
-                        subject: '',
-                        result: ''
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data.message); // For debugging
-                    // Redirect on successful login
-                    window.location.href = 'course_selection.html';
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-            } else {
-                document.getElementById('error-message').style.display = 'block';
-            }
-        }
-    </script>
+        // Try backend (optional)
+        fetch('save_user_data.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        }).catch(() => {
+            console.log("Backend not working (GitHub Pages)");
+        });
+
+        // 🔥 IMPORTANT: Redirect outside fetch
+        window.location.href = 'course_selection.html';
+
+    } else {
+        document.getElementById('error-message').style.display = 'block';
+    }
+}
+
+    //     function loginUser(event) {
+    //         event.preventDefault();
+
+    //         const username = document.getElementById('username').value;
+    //         const password = document.getElementById('password').value;
+
+    //         const user = users.find(user => user.username === username && user.password === password);
+
+    //         if (user) {
+    //             // Store session (optional)
+    //             sessionStorage.setItem('user', username);
+
+    //             // Send data to backend
+    //             fetch('save_user_data.php', {
+    //                 method: 'POST',
+    //                 headers: {
+    //                     'Content-Type': 'application/json'
+    //                 },
+    //                 body: JSON.stringify({
+    //                     username: username,
+    //                     password: password,
+    //                     course: '',   // You can update this later
+    //                     year: '',
+    //                     subject: '',
+    //                     result: ''
+    //                 })
+    //             })
+    //             .then(response => response.json())
+    //             .then(data => {
+    //                 console.log(data.message); // For debugging
+    //                 // Redirect on successful login
+    //                 window.location.href = 'course_selection.html';
+    //             })
+    //             .catch(error => {
+    //                 console.error('Error:', error);
+    //             });
+    //         } else {
+    //             document.getElementById('error-message').style.display = 'block';
+    //         }
+    //     }
+    // </script>
 
     <!-- Footer Section -->
     <!--
