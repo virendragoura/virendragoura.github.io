@@ -477,7 +477,12 @@
 
 
   <footer>
-    <p class="text-white">&copy;2025 Virendra Goura. All rights reserved.</p>
+   <p>© <span id="year"></span> Virendra Goura. All rights reserved.</p>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
   </footer>
     
     <!-- jquery script -->
@@ -496,6 +501,7 @@
       <script src="/Js/script.js"></script>
     </body>
 </html>
+
 
 
 
